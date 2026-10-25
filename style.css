@@ -54,6 +54,13 @@ h2{font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:.28em;text-tran
 .btn:hover,.btn:focus-visible{background:var(--ink);color:#fff;outline:none}
 .btn.ghost{border-color:var(--gold);color:var(--ink)}
 .btn.ghost:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.solid{background:var(--ink);color:#fff;border-color:var(--ink);padding:13px 26px;display:inline-flex;align-items:center;gap:10px}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn .bico{width:18px;height:18px}
+.actions{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.actions .btn{margin:0}
+.rings-wrap{color:var(--gold);margin:0 auto 22px}
+.rings{width:72px;height:36px;display:block;margin:0 auto}
 
 /* Maps */
 .maps{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
@@ -75,7 +82,7 @@ h2{font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:.28em;text-tran
 
 /* Photos */
 .photos{background:var(--wash)}
-.photos .btn{margin:8px 6px 0}
+.photos .btn{margin:0}
 
 /* Closing */
 .closing .script{font-size:clamp(26px,3.4vw,36px);max-width:28em;margin:0 auto}
