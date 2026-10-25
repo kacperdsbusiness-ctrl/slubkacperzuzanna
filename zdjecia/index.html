@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galeria · Kacper i Zuzanna</title>
+<meta name="description" content="Zdjęcia ze ślubu Kacpra i Zuzanny: od gości, od fotografa i film.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .ghead{padding:clamp(72px,12vw,120px) 0 0;text-align:center}
+  .ghead .script{color:var(--gold);font-size:clamp(28px,4vw,38px);margin:0 0 8px}
+  .ghead h1{font-weight:500;font-size:clamp(24px,3.4vw,34px);letter-spacing:.28em;text-transform:uppercase;margin:0}
+  .back{display:inline-block;margin-top:16px;text-decoration:none;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--ink-soft)}
+  .tabs{display:flex;justify-content:center;gap:4px;margin:34px auto 0;border-bottom:1px solid var(--gold-soft);max-width:720px}
+  .tabs button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:14px 18px;font:inherit;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:12.5px;color:var(--ink-soft);cursor:pointer}
+  .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+  .tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .panel{padding:36px 0 80px}
+  .panel[hidden]{display:none}
+
+  /* upload */
+  .up{max-width:640px;margin:0 auto 44px;padding:28px clamp(18px,4vw,36px);background:var(--wash);text-align:center}
+  .up p{margin:0 0 14px}
+  .up label{display:block;letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--ink-soft);margin:8px 0 6px}
+  .up input[type=text]{width:100%;max-width:360px;padding:10px 14px;border:1px solid var(--gold-soft);background:#fff;font:inherit;font-size:18px;text-align:center}
+  .up input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+  .up .btn{margin-top:18px;cursor:pointer}
+  .up .hint{font-size:15px;color:var(--ink-soft);margin:12px 0 0}
+  .queue{list-style:none;padding:0;margin:18px 0 0;text-align:left;font-size:16px}
+  .queue li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--gold-soft)}
+  .queue li span:last-child{color:var(--ink-soft);white-space:nowrap}
+  .queue li.ok span:last-child{color:var(--gold)}
+  .queue li.err span:last-child{color:#a0463a}
+  .bar{height:2px;background:var(--gold-soft);margin-top:14px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+
+  /* grid */
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px;color:var(--ink-soft);font-size:16px}
+  .meta .btn{margin:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+  .grid a{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:var(--wash)}
+  .grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .grid a:hover img,.grid a:focus-visible img{transform:scale(1.03)}
+  .grid a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .grid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:36px;text-shadow:0 2px 12px rgba(0,0,0,.4);pointer-events:none}
+  .grid .by{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);color:#fff;font-size:14px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .empty{text-align:center;color:var(--ink-soft);padding:40px 0 10px}
+  .empty .script{color:var(--gold);font-size:30px;display:block;margin-bottom:6px}
+  .state{text-align:center;color:var(--ink-soft);padding:30px 0}
+  .videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+  .videos figure{margin:0}
+  .videos iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
+  .videos figcaption{padding:10px 4px;color:var(--ink-soft);font-size:16px;text-align:center}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:70;background:rgba(20,16,12,.94);display:none;align-items:center;justify-content:center}
+  .lb.on{display:flex}
+  .lb img,.lb iframe{max-width:min(96vw,1600px);max-height:88vh;display:block;border:0}
+  .lb iframe{width:min(96vw,1200px);aspect-ratio:16/9;background:#000}
+  .lb button{position:absolute;background:none;border:0;color:#fff;font:inherit;cursor:pointer;opacity:.85;padding:14px}
+  .lb button:hover,.lb button:focus-visible{opacity:1;outline:none}
+  .lb .x{top:10px;right:14px;font-size:30px;line-height:1}
+  .lb .prev,.lb .next{top:50%;transform:translateY(-50%);font-size:46px;line-height:1;font-weight:300}
+  .lb .prev{left:6px}.lb .next{right:6px}
+  .lb .dl{bottom:14px;left:50%;transform:translateX(-50%);letter-spacing:.22em;text-transform:uppercase;font-size:12px;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:9px 18px}
+  @media (max-width:640px){.tabs button{padding:12px 10px;font-size:11.5px;letter-spacing:.16em}.grid{grid-template-columns:repeat(3,1fr);gap:4px}.lb .prev,.lb .next{display:none}}
+</style>
+</head>
+<body>
+
+<button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+<div class="menu-scrim" hidden></div>
+<nav class="menu" id="menu" aria-label="Menu strony">
+  <a href="/#witamy">Witamy</a>
+  <a href="/#plan">Plan dnia</a>
+  <a href="/#dojazd">Jak dojechać</a>
+  <a href="/#prosby">Kilka próśb</a>
+  <a href="/zdjecia/">Galeria zdjęć</a>
+  <a href="/zdjecia/#gosc">Dodaj swoje zdjęcia</a>
+  <div class="menu-foot"><span class="script">Kacper &amp; Zuzanna</span>15 maja 2027</div>
+</nav>
+
+<header class="ghead">
+  <div class="wrap">
+    <p class="script">z ciepłem i miłością</p>
+    <h1>Galeria</h1>
+    <a class="back" href="/">← strona ślubu</a>
+    <div class="tabs" role="tablist" aria-label="Kategorie">
+      <button role="tab" id="tab-gosc" aria-controls="p-gosc" aria-selected="true" data-cat="gosc">Od gości</button>
+      <button role="tab" id="tab-foto" aria-controls="p-foto" aria-selected="false" data-cat="foto">Od fotografa</button>
+      <button role="tab" id="tab-film" aria-controls="p-film" aria-selected="false" data-cat="film">Film</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel" id="p-gosc" role="tabpanel" aria-labelledby="tab-gosc">
+    <div class="up">
+      <p class="script" style="margin:0 0 6px;color:var(--gold)">Podziel się zdjęciami</p>
+      <p>Masz zdjęcia lub krótkie filmy z wesela? Dodaj je tutaj, prosto z telefonu. Bez logowania.</p>
+      <form id="upform">
+        <label for="by">Twoje imię (opcjonalnie)</label>
+        <input type="text" id="by" name="by" maxlength="60" autocomplete="name" placeholder="np. Ania i Tomek">
+        <input type="file" id="files" name="files" multiple accept="image/*,video/*">
+        <label for="files" class="btn" tabindex="0">Wybierz zdjęcia</label>
+      </form>
+      <p class="hint">Zdjęcia zmniejszamy przed wysyłką, żeby poszło szybko. Filmy do 35 MB.</p>
+      <div class="bar" id="bar" hidden><i></i></div>
+      <ul class="queue" id="queue"></ul>
+    </div>
+    <div class="meta"><span id="m-gosc"></span><a class="btn ghost" id="dl-gosc" href="#" target="_blank" rel="noopener" hidden>Pobierz wszystkie</a></div>
+    <div id="g-gosc"></div>
+  </section>
+
+  <section class="panel" id="p-foto" role="tabpanel" aria-labelledby="tab-foto" hidden>
+    <div class="meta"><span id="m-foto"></span><a class="btn ghost" id="dl-foto" href="#" target="_blank" rel="noopener" hidden>Pobierz wszystkie</a></div>
+    <div id="g-foto"></div>
+  </section>
+
+  <section class="panel" id="p-film" role="tabpanel" aria-labelledby="tab-film" hidden>
+    <div class="meta"><span id="m-film"></span><a class="btn ghost" id="dl-film" href="#" target="_blank" rel="noopener" hidden>Pobierz</a></div>
+    <div id="g-film"></div>
+  </section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Podgląd">
+  <button class="x" type="button" aria-label="Zamknij">×</button>
+  <button class="prev" type="button" aria-label="Poprzednie">‹</button>
+  <button class="next" type="button" aria-label="Następne">›</button>
+  <div id="lb-body"></div>
+  <a class="dl" id="lb-dl" href="#" download>Pobierz</a>
+</div>
+
+<footer>Kacper &amp; Zuzanna · 15.05.2027</footer>
+
+<script>
+(function(){
+  // === Konfiguracja ===
+  var API = "__API_URL__"; // adres wdrożenia Google Apps Script (uzupełniany przy wdrożeniu)
+  var MAX_SIDE = 2400, JPEG_Q = 0.86, MAX_VIDEO = 35*1024*1024;
+
+  // --- menu ---
+  var btn=document.querySelector('.menu-btn'),scrim=document.querySelector('.menu-scrim'),menu=document.getElementById('menu');
+  function setMenu(open){document.body.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',open);scrim.hidden=!open;}
+  btn.addEventListener('click',function(){setMenu(!document.body.classList.contains('menu-open'));});
+  scrim.addEventListener('click',function(){setMenu(false);});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false);});
+
+  // --- tabs ---
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  var loaded={}, data={};
+  function show(cat){
+    tabs.forEach(function(t){var on=t.dataset.cat===cat;t.setAttribute('aria-selected',on);document.getElementById('p-'+t.dataset.cat).hidden=!on;});
+    if(history.replaceState)history.replaceState(null,'','#'+cat);
+    if(!loaded[cat])load(cat);
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.cat);});});
+  var start=(location.hash||'#gosc').slice(1); if(!/^(gosc|foto|film)$/.test(start))start='gosc';
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(/^(gosc|foto|film)$/.test(h))show(h);});
+
+  // --- API ---
+  function ready(){return API.indexOf('http')===0;}
+  function thumb(id,w){return 'https://drive.google.com/thumbnail?id='+id+'&sz=w'+w;}
+  function dlUrl(id){return 'https://drive.google.com/uc?export=download&id='+id;}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  var EMPTY={gosc:['Jeszcze pusto','Bądź pierwszą osobą, która doda zdjęcie.'],foto:['Jeszcze w obróbce','Zdjęcia od fotografa pojawią się tutaj kilka tygodni po ślubie.'],film:['Jeszcze w montażu','Film pojawi się tutaj, gdy będzie gotowy.']};
+
+  function load(cat){
+    var g=document.getElementById('g-'+cat), m=document.getElementById('m-'+cat), dl=document.getElementById('dl-'+cat);
+    if(!ready()){g.innerHTML='<div class="empty"><span class="script">Galeria w przygotowaniu</span>Wróć tu wkrótce.</div>';return;}
+    g.innerHTML='<div class="state">Wczytuję…</div>';
+    fetch(API+'?cat='+cat+'&t='+Date.now()).then(function(r){return r.json();}).then(function(j){
+      if(!j.ok)throw new Error(j.error||'Błąd');
+      loaded[cat]=true; data[cat]=j.files;
+      if(j.folderUrl){dl.href=j.folderUrl;dl.hidden=!j.files.length;}
+      m.textContent=j.files.length?j.files.length+(j.files.length===1?' plik':j.files.length<5?' pliki':' plików'):'';
+      render(cat);
+    }).catch(function(e){g.innerHTML='<div class="state">Nie udało się wczytać galerii. Odśwież stronę.<br><small>'+esc(e.message)+'</small></div>';});
+  }
+
+  function render(cat){
+    var g=document.getElementById('g-'+cat), files=data[cat]||[];
+    if(!files.length){g.innerHTML='<div class="empty"><span class="script">'+EMPTY[cat][0]+'</span>'+EMPTY[cat][1]+'</div>';return;}
+    if(cat==='film' && files.every(function(f){return f.mime.indexOf('video/')===0;})){
+      g.innerHTML='<div class="videos">'+files.map(function(f){return '<figure><iframe src="https://drive.google.com/file/d/'+f.id+'/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="'+esc(f.name)+'"></iframe><figcaption>'+esc(f.name.replace(/\.[^.]+$/,''))+'</figcaption></figure>';}).join('')+'</div>';
+      return;
+    }
+    g.innerHTML='<div class="grid">'+files.map(function(f,i){
+      var v=f.mime.indexOf('video/')===0;
+      return '<a href="'+thumb(f.id,2000)+'" data-i="'+i+'" data-cat="'+cat+'"><img loading="lazy" src="'+thumb(f.id,600)+'" alt="'+esc(f.name)+'">'+(v?'<span class="play">▶</span>':'')+(f.by?'<span class="by">'+esc(f.by)+'</span>':'')+'</a>';
+    }).join('')+'</div>';
+  }
+
+  // --- lightbox ---
+  var lb=document.getElementById('lb'), lbBody=document.getElementById('lb-body'), lbDl=document.getElementById('lb-dl'), cur={cat:null,i:0};
+  function open(cat,i){
+    var f=(data[cat]||[])[i]; if(!f)return; cur={cat:cat,i:i};
+    var v=f.mime.indexOf('video/')===0;
+    lbBody.innerHTML=v?'<iframe src="https://drive.google.com/file/d/'+f.id+'/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>':'<img src="'+thumb(f.id,2000)+'" alt="'+esc(f.name)+'">';
+    lbDl.href=dlUrl(f.id); lb.classList.add('on'); document.body.style.overflow='hidden';
+  }
+  function close(){lb.classList.remove('on');lbBody.innerHTML='';document.body.style.overflow='';}
+  function step(d){var n=cur.i+d, arr=data[cur.cat]||[]; if(n<0)n=arr.length-1; if(n>=arr.length)n=0; open(cur.cat,n);}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.grid a'); if(a){e.preventDefault();open(a.dataset.cat,+a.dataset.i);}
+  });
+  lb.querySelector('.x').addEventListener('click',close);
+  lb.querySelector('.prev').addEventListener('click',function(){step(-1);});
+  lb.querySelector('.next').addEventListener('click',function(){step(1);});
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){close();setMenu(false);}
+    if(!lb.classList.contains('on'))return;
+    if(e.key==='ArrowLeft')step(-1); if(e.key==='ArrowRight')step(1);
+  });
+  var tx=null; lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  lb.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>50)step(dx<0?1:-1);},{passive:true});
+
+  // --- upload ---
+  var input=document.getElementById('files'), queue=document.getElementById('queue'), bar=document.getElementById('bar'), barI=bar.querySelector('i');
+  document.querySelector('label[for=files]').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();input.click();}});
+  input.addEventListener('change',function(){
+    var files=[].slice.call(input.files); input.value='';
+    if(!files.length)return;
+    if(!ready()){alert('Wysyłanie będzie dostępne wkrótce.');return;}
+    var by=document.getElementById('by').value.trim(); try{localStorage.setItem('by',by);}catch(_){}
+    bar.hidden=false; barI.style.width='0%';
+    var done=0, total=files.length;
+    files.reduce(function(p,f){return p.then(function(){return sendOne(f,by);}).then(function(){done++;barI.style.width=Math.round(done/total*100)+'%';});},Promise.resolve())
+      .then(function(){loaded.gosc=false;load('gosc');setTimeout(function(){bar.hidden=true;},1500);});
+  });
+  try{var saved=localStorage.getItem('by');if(saved)document.getElementById('by').value=saved;}catch(_){}
+
+  function row(name){var li=document.createElement('li');li.innerHTML='<span>'+esc(name)+'</span><span>przygotowuję…</span>';queue.prepend(li);return li;}
+  function setRow(li,txt,cls){li.lastChild.textContent=txt;if(cls)li.className=cls;}
+
+  function sendOne(file,by){
+    var li=row(file.name);
+    var isVideo=file.type.indexOf('video/')===0;
+    if(isVideo && file.size>MAX_VIDEO){setRow(li,'za duży (max 35 MB)','err');return Promise.resolve();}
+    var prep=isVideo?Promise.resolve({blob:file,mime:file.type,name:file.name}):shrink(file);
+    return prep.then(function(o){
+      setRow(li,'wysyłam…');
+      return toBase64(o.blob).then(function(b64){
+        return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({cat:'gosc',name:o.name,mime:o.mime,by:by,data:b64})});
+      });
+    }).then(function(r){return r.json();}).then(function(j){
+      if(j.ok)setRow(li,'dodane ✓','ok'); else setRow(li,'błąd: '+(j.error||''),'err');
+    }).catch(function(e){setRow(li,'błąd sieci','err');});
+  }
+
+  function shrink(file){
+    return new Promise(function(res){
+      var url=URL.createObjectURL(file), img=new Image();
+      img.onload=function(){
+        var w=img.naturalWidth,h=img.naturalHeight,s=Math.min(1,MAX_SIDE/Math.max(w,h));
+        if(s===1 && file.size<2.5*1024*1024){URL.revokeObjectURL(url);return res({blob:file,mime:file.type,name:file.name});}
+        var c=document.createElement('canvas');c.width=Math.round(w*s);c.height=Math.round(h*s);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        c.toBlob(function(b){URL.revokeObjectURL(url);if(!b)return res({blob:file,mime:file.type,name:file.name});res({blob:b,mime:'image/jpeg',name:file.name.replace(/\.[^.]+$/,'')+'.jpg'});},'image/jpeg',JPEG_Q);
+      };
+      img.onerror=function(){URL.revokeObjectURL(url);res({blob:file,mime:file.type||'image/jpeg',name:file.name});};
+      img.src=url;
+    });
+  }
+  function toBase64(blob){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(String(r.result).split(',')[1]);};r.onerror=rej;r.readAsDataURL(blob);});}
+
+  show(start);
+})();
+</script>
+</body>
+</html>
