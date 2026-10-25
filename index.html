@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=5">
 </head>
 <body>
 
@@ -177,6 +177,9 @@
     scrim.addEventListener('click',function(){set(false);});
     menu.addEventListener('click',function(e){if(e.target.tagName==='A')set(false);});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+    var hero=document.querySelector('.hero');
+    function tone(){btn.classList.toggle('light',window.scrollY>hero.offsetHeight-60);}
+    window.addEventListener('scroll',tone,{passive:true});tone();
   })();
 </script>
 </body>
