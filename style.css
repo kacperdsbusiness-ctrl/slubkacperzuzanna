@@ -116,3 +116,5 @@ body.menu-open .menu{transform:none}
 body.menu-open .menu-scrim{opacity:1;pointer-events:auto}
 @media (prefers-reduced-motion:reduce){.menu,.menu-scrim,.menu-btn span{transition:none}}
 
+
+[hidden]{display:none !important}
