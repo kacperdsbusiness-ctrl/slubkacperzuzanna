@@ -100,7 +100,7 @@ footer{padding:24px 0 36px;text-align:center;color:var(--ink-soft);font-size:15p
   .hero{height:70svh;min-height:480px;max-height:720px}
   .hero img{object-position:50% 38%}
   .hero-top{padding-top:48px}
-  .hero-date{font-size:clamp(64px,19vw,96px);padding-bottom:22px}
+  .hero-date{font-size:clamp(64px,19vw,96px);padding-bottom:44px}
   .hero-date{gap:.2em}
   .cols{grid-template-columns:1fr;gap:8px}
   .cols>div+div{border-left:0;border-top:1px solid var(--gold-soft);padding-top:32px;margin-top:20px}
