@@ -3,30 +3,250 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kacper & Zuzanna · 15 maja 2027</title>
-<meta name="robots" content="noindex">
+<title>Kacper i Zuzanna · 15 maja 2027</title>
+<meta name="description" content="Ślub Kacpra i Zuzanny, 15 maja 2027. Szczegóły ceremonii, przyjęcia i dojazdu.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Kacper i Zuzanna biorą ślub · 15 maja 2027">
+<meta property="og:image" content="https://slubkacperzuzanna.pl/img/hero-m.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
 <style>
-  :root { --ink:#2b2622; --gold:#b89b6a; --bg:#fbf9f6; }
-  html,body { margin:0; background:var(--bg); color:var(--ink); font-family: Georgia, "Times New Roman", serif; }
-  main { min-height:100svh; display:grid; place-items:center; padding:24px 16px; text-align:center; }
-  .k { letter-spacing:.32em; text-transform:uppercase; font-size:13px; }
-  h1 { font-weight:400; font-size:clamp(28px,6vw,48px); letter-spacing:.18em; text-transform:uppercase; margin:18px 0 6px; line-height:1.25; }
-  .i { font-style:italic; font-size:20px; margin:0 0 26px; }
-  .d { font-size:15px; letter-spacing:.12em; }
-  .line { width:56px; height:1px; background:var(--gold); margin:28px auto; }
-  .soon { font-size:14px; color:#7a7069; }
+  :root{
+    --paper:#ffffff;
+    --ink:#2c2824;
+    --ink-soft:#6f6761;
+    --gold:#b89a62;
+    --gold-soft:#e6dcc6;
+    --wash:#faf7f2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .caps{letter-spacing:.3em;text-transform:uppercase;font-weight:500;font-size:14px}
+  .script{font-family:"Dancing Script",cursive;font-weight:500;font-size:34px;line-height:1.2}
+  .wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+
+  /* Hero */
+  .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:space-between}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,14,8,.32) 0%,rgba(20,14,8,0) 30%,rgba(20,14,8,0) 55%,rgba(20,14,8,.55) 100%)}
+  .hero>*{position:relative;z-index:1}
+  .hero-top{padding-top:clamp(40px,8vh,80px)}
+  .hero-top .caps{font-size:13px;opacity:.95}
+  .hero-top h1{font-weight:500;font-size:clamp(26px,4.2vw,44px);letter-spacing:.22em;text-transform:uppercase;margin:14px 0 0;line-height:1.2}
+  .hero-top .script{margin:10px 0 0;font-size:clamp(30px,4vw,44px)}
+  .hero-date{font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(76px,16vw,180px);line-height:.9;letter-spacing:.02em;display:flex;justify-content:center;gap:.28em;padding-bottom:clamp(18px,4vh,40px);text-shadow:0 2px 24px rgba(0,0,0,.25)}
+  .hero-date span{position:relative;padding-top:12px}
+  .hero-date span:not(:first-child)::before{content:"";position:absolute;left:-.18em;top:.18em;bottom:.08em;width:1px;background:rgba(255,255,255,.55)}
+
+  /* Sections */
+  section{padding:clamp(56px,9vw,104px) 0}
+  .center{text-align:center}
+  h2{font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:.28em;text-transform:uppercase;margin:0 0 10px;line-height:1.3}
+  .lead{max-width:34em;margin:0 auto;font-size:22px}
+  .rule{width:64px;height:1px;background:var(--gold);margin:26px auto}
+
+  /* Countdown */
+  .count{display:flex;justify-content:center;gap:clamp(18px,4vw,44px);margin-top:34px}
+  .count b{display:block;font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(36px,6vw,58px);line-height:1}
+  .count small{display:block;letter-spacing:.24em;text-transform:uppercase;font-size:12px;color:var(--ink-soft);margin-top:8px}
+
+  /* Plan: three columns with hairlines, like the invitation back */
+  .plan{background:var(--wash)}
+  .cols{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center}
+  .cols>div{padding:12px clamp(16px,3vw,40px)}
+  .cols>div+div{border-left:1px solid var(--gold-soft)}
+  .cols h3{font-weight:500;letter-spacing:.3em;text-transform:uppercase;font-size:15px;margin:0 0 14px}
+  .cols .big{font-family:"Playfair Display",serif;font-weight:900;font-size:30px;line-height:1;margin:0 0 12px}
+  .cols p{margin:0 0 6px}
+  .cols .muted{color:var(--ink-soft);font-size:17px}
+  .btn{display:inline-block;margin-top:14px;padding:10px 22px;border:1px solid var(--ink);border-radius:999px;text-decoration:none;letter-spacing:.2em;text-transform:uppercase;font-size:12.5px;font-weight:600;transition:background .2s,color .2s}
+  .btn:hover,.btn:focus-visible{background:var(--ink);color:#fff;outline:none}
+  .btn.ghost{border-color:var(--gold);color:var(--ink)}
+  .btn.ghost:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+
+  /* Maps */
+  .maps{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+  .map{border:1px solid var(--gold-soft);padding:8px;background:#fff}
+  .map iframe{display:block;width:100%;aspect-ratio:4/3;border:0;filter:saturate(.85)}
+  .map figcaption{padding:14px 6px 6px;text-align:center}
+  .map figcaption strong{display:block;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:14px;margin-bottom:4px}
+  .map figcaption span{color:var(--ink-soft);font-size:17px}
+
+  /* Requests */
+  .asks{max-width:40em;margin:0 auto}
+  .asks ol{list-style:none;padding:0;margin:0}
+  .asks li{position:relative;padding:22px 0 22px 0;border-bottom:1px solid var(--gold-soft)}
+  .asks li:last-child{border-bottom:0}
+  .asks li .script{font-size:30px;color:var(--gold);display:block;margin-bottom:4px}
+  .asks p{margin:0}
+  .asks .muted{color:var(--ink-soft);font-size:17px}
+
+  /* Photos */
+  .photos{background:var(--wash)}
+  .photos .btn{margin:8px 6px 0}
+
+  /* Closing */
+  .closing .script{font-size:clamp(26px,3.4vw,36px);max-width:28em;margin:0 auto}
+  .closing .ref{letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--ink-soft);margin-top:14px}
+  .ornament{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:40px auto 0}
+  .ornament i{display:block;width:56px;height:1px;background:var(--gold)}
+  .ornament svg{width:22px;height:22px}
+  footer{padding:24px 0 36px;text-align:center;color:var(--ink-soft);font-size:15px;letter-spacing:.12em}
+
+  @media (max-width:760px){
+    body{font-size:18px}
+    .hero-date{gap:.2em}
+    .cols{grid-template-columns:1fr;gap:8px}
+    .cols>div+div{border-left:0;border-top:1px solid var(--gold-soft);padding-top:32px;margin-top:20px}
+    .maps{grid-template-columns:1fr}
+    .count small{font-size:11px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero-top,.hero-date{animation:rise 1.2s ease-out both}
+    .hero-date{animation-delay:.25s}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  }
 </style>
 </head>
 <body>
-<main>
-  <div>
-    <div class="k">Save the date</div>
-    <h1>Kacper<br><span class="i" style="letter-spacing:0;text-transform:none">i</span><br>Zuzanna</h1>
-    <p class="i">biorą ślub</p>
-    <div class="d">15 MAJA 2027 · GODZ. 15:00</div>
-    <div class="line"></div>
-    <p class="soon">Strona ze szczegółami pojawi się tutaj wkrótce.</p>
+
+<header class="hero">
+  <picture>
+    <source media="(max-width:760px)" srcset="img/hero-m.jpg">
+    <img src="img/hero.jpg" alt="Kacper i Zuzanna pod jabłonią o zachodzie słońca">
+  </picture>
+  <div class="hero-top">
+    <div class="caps">Save the date</div>
+    <h1>Kacper &amp; Zuzanna</h1>
+    <p class="script">biorą ślub</p>
   </div>
-</main>
+  <div class="hero-date" aria-label="15 maja 2027"><span>15</span><span>05</span><span>27</span></div>
+</header>
+
+<section class="center" id="witamy">
+  <div class="wrap">
+    <h2>Witamy</h2>
+    <div class="rule"></div>
+    <p class="lead">Cieszymy się, że tu jesteście. Na tej stronie znajdziecie wszystko, co trzeba wiedzieć o naszym ślubie: gdzie, o której, jak dojechać i o co Was prosimy.</p>
+    <div class="count" id="count" aria-live="polite">
+      <div><b data-u="d">—</b><small>dni</small></div>
+      <div><b data-u="h">—</b><small>godzin</small></div>
+      <div><b data-u="m">—</b><small>minut</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="plan" id="plan">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Ceremonia</h3>
+        <p class="big">15:00</p>
+        <p>Kościół pw. Matki Bożej Różańcowej</p>
+        <p class="muted">Jamno, Koszalin</p>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Ko%C5%9Bci%C3%B3%C5%82+Matki+Bo%C5%BCej+R%C3%B3%C5%BCa%C5%84cowej+Jamno+Koszalin" target="_blank" rel="noopener">Nawiguj</a>
+      </div>
+      <div>
+        <h3>Przyjęcie</h3>
+        <p class="big">po ślubie</p>
+        <p>Dom Weselny Pod Dobrym Aniołem</p>
+        <p class="muted">Rekowo 13</p>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Dom+Weselny+Pod+Dobrym+Anio%C5%82em+Rekowo+13" target="_blank" rel="noopener">Nawiguj</a>
+      </div>
+      <div>
+        <h3>Potwierdzenie</h3>
+        <p class="big">20 marca</p>
+        <p>Prosimy o potwierdzenie obecności do 20 marca 2027.</p>
+        <p class="muted">Zuzanna: [numer] · Kacper: [numer]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="center" id="dojazd">
+  <div class="wrap">
+    <h2>Jak dojechać</h2>
+    <div class="rule"></div>
+    <p class="lead">Kościół i sala leżą blisko Koszalina. Kliknij mapę, żeby otworzyć nawigację.</p>
+    <div class="maps">
+      <figure class="map">
+        <iframe loading="lazy" title="Mapa: Kościół Matki Bożej Różańcowej, Jamno" src="https://maps.google.com/maps?q=Ko%C5%9Bci%C3%B3%C5%82+Matki+Bo%C5%BCej+R%C3%B3%C5%BCa%C5%84cowej+Jamno+Koszalin&z=14&output=embed"></iframe>
+        <figcaption><strong>Ceremonia</strong><span>Kościół pw. Matki Bożej Różańcowej, Jamno</span></figcaption>
+      </figure>
+      <figure class="map">
+        <iframe loading="lazy" title="Mapa: Dom Weselny Pod Dobrym Aniołem, Rekowo" src="https://maps.google.com/maps?q=Dom+Weselny+Pod+Dobrym+Anio%C5%82em+Rekowo+13&z=14&output=embed"></iframe>
+        <figcaption><strong>Przyjęcie</strong><span>Dom Weselny Pod Dobrym Aniołem, Rekowo 13</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="prosby">
+  <div class="wrap">
+    <div class="center">
+      <h2>Kilka próśb</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="asks">
+      <ol>
+        <li>
+          <span class="script">Telefony do kieszeni</span>
+          <p>Prosimy, nie róbcie zdjęć i nie nagrywajcie podczas ceremonii. Zajmie się tym fotograf, a Wy bądźcie z nami w pełni. Wszystkie zdjęcia opublikujemy tutaj kilka tygodni po ślubie.</p>
+        </li>
+        <li>
+          <span class="script">Weźcie dużo miłości</span>
+          <p>Przywieźcie ze sobą radość, nadzieję i dobrą energię. Będziemy się weselić i chcemy, żebyście weselili się razem z nami.</p>
+        </li>
+        <li>
+          <span class="script">Nocleg</span>
+          <p>Jest możliwość wykupienia noclegu na miejscu, w Domu Weselnym. Jeśli chcecie zostać na noc, dajcie nam znać przy potwierdzeniu obecności.</p>
+          <p class="muted">W razie pytań dzwońcie: Zuzanna [numer], Kacper [numer].</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="photos center" id="zdjecia">
+  <div class="wrap">
+    <h2>Zdjęcia</h2>
+    <div class="rule"></div>
+    <p class="lead">Po ślubie w tym miejscu pojawią się wszystkie zdjęcia. Będzie można je oglądać i pobierać w pełnej jakości.</p>
+    <a class="btn" href="#zdjecia" aria-disabled="true">Galeria pojawi się po ślubie</a>
+  </div>
+</section>
+
+<section class="closing center" id="do-zobaczenia">
+  <div class="wrap">
+    <p class="lead">Mamy nadzieję, że będziemy się świetnie bawić i wszyscy wyjedziemy napełnieni nadzieją i miłością.<br>Widzimy się 15 maja 2027.</p>
+    <div class="rule"></div>
+    <p class="script">Tak więc trwają wiara, nadzieja, miłość – te trzy: z nich zaś największa jest miłość</p>
+    <div class="ref">1 Kor 13, 13</div>
+    <div class="ornament" aria-hidden="true">
+      <i></i>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20s-7-4.6-7-10a3.9 3.9 0 0 1 7-2.3A3.9 3.9 0 0 1 19 10c0 5.4-7 10-7 10z"/></svg>
+      <i></i>
+    </div>
+  </div>
+</section>
+
+<footer>Kacper &amp; Zuzanna · 15.05.2027</footer>
+
+<script>
+  (function(){
+    var target = new Date("2027-05-15T15:00:00+02:00").getTime();
+    var el = document.getElementById("count");
+    var d = el.querySelector("[data-u=d]"), h = el.querySelector("[data-u=h]"), m = el.querySelector("[data-u=m]");
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      var days = Math.floor(diff/86400000), hrs = Math.floor(diff%86400000/3600000), mins = Math.floor(diff%3600000/60000);
+      d.textContent = days; h.textContent = hrs; m.textContent = mins;
+    }
+    tick(); setInterval(tick, 30000);
+  })();
+</script>
 </body>
 </html>
