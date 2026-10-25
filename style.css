@@ -97,8 +97,8 @@ footer{padding:24px 0 36px;text-align:center;color:var(--ink-soft);font-size:15p
 
 @media (max-width:760px){
   body{font-size:18px}
-  .hero{height:78svh;min-height:520px}
-  .hero img{object-position:50% 42%}
+  .hero{height:70svh;min-height:480px;max-height:720px}
+  .hero img{object-position:50% 38%}
   .hero-top{padding-top:48px}
   .hero-date{font-size:clamp(64px,19vw,96px);padding-bottom:22px}
   .hero-date{gap:.2em}
