@@ -56,6 +56,10 @@ function listFiles_(cat) {
 
 function doGet(e) {
   var cat = (e && e.parameter && e.parameter.cat) || '';
+  if (cat === 'root') {
+    var rootId = PropertiesService.getScriptProperties().getProperty('ROOT_ID');
+    return json_({ ok: true, folderUrl: rootId ? DriveApp.getFolderById(rootId).getUrl() : null });
+  }
   if (!CATS[cat]) return json_({ ok: false, error: 'Nieznana kategoria' });
   var cache = CacheService.getScriptCache();
   var hit = cache.get('list_' + cat);
