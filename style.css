@@ -68,7 +68,8 @@ h2{font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:.28em;text-tran
 .asks ol{list-style:none;padding:0;margin:0}
 .asks li{position:relative;padding:22px 0 22px 0;border-bottom:1px solid var(--gold-soft)}
 .asks li:last-child{border-bottom:0}
-.asks li .script{font-size:30px;color:var(--gold);display:block;margin-bottom:4px}
+.asks li .script{font-size:30px;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.asks .ico{width:26px;height:26px;flex:0 0 auto}
 .asks p{margin:0}
 .asks .muted{color:var(--ink-soft);font-size:17px}
 
