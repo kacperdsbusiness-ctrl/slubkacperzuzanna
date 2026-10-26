@@ -13,4 +13,14 @@ LOCATION:Kościół pw. Matki Bożej Różańcowej\, Jamno\, Koszalin
 DESCRIPTION:Ceremonia o 15:00 w Jamnie\, przyjęcie w Domu Weselnym Pod Dobrym Aniołem\, Rekowo 13. Szczegóły: https://zuzannaikacper.pl
 URL:https://zuzannaikacper.pl
 END:VEVENT
+BEGIN:VEVENT
+UID:poprawiny-zuzanna-kacper-2027@zuzannaikacper.pl
+DTSTAMP:20261026T100000Z
+DTSTART;TZID=Europe/Warsaw:20270516T110000
+DTEND;TZID=Europe/Warsaw:20270516T150000
+SUMMARY:Poprawiny – Zuzanna i Kacper
+LOCATION:Dom Weselny Pod Dobrym Aniołem\, Rekowo 13
+DESCRIPTION:Obiad\, wspólna kawa i wspominanie dnia poprzedniego. Szczegóły: https://zuzannaikacper.pl
+URL:https://zuzannaikacper.pl
+END:VEVENT
 END:VCALENDAR
