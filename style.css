@@ -26,8 +26,8 @@ a[href^="tel:"]{text-decoration:none;border-bottom:1px solid var(--gold-soft);wh
 .hero-top h1{font-weight:500;font-size:clamp(26px,4.2vw,44px);letter-spacing:.22em;text-transform:uppercase;margin:14px 0 0;line-height:1.2}
 .hero-top .script{margin:10px 0 0;font-size:clamp(30px,4vw,44px)}
 .hero-date{font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(76px,16vw,180px);line-height:.9;letter-spacing:.02em;display:flex;justify-content:center;gap:.28em;padding-bottom:clamp(18px,4vh,40px);text-shadow:0 2px 24px rgba(0,0,0,.25)}
-.hero-date span{position:relative;padding-top:12px}
-.hero-date span:not(:first-child)::before{content:"";position:absolute;left:-.18em;top:.18em;bottom:.08em;width:1px;background:rgba(255,255,255,.55)}
+.hero-date span{position:relative;line-height:1}
+.hero-date span:not(:first-child)::before{content:"";position:absolute;left:-.15em;top:.22em;bottom:.1em;width:1px;background:rgba(255,255,255,.55)}
 
 /* Sections */
 section{padding:clamp(56px,9vw,104px) 0}
